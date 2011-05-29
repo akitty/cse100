@@ -1,0 +1,139 @@
+template<class DATA> bool Table<DATA>::insert ( DATA & data )
+	{
+		//check table is not full
+		if (currentSize==tableSize){
+			cout<<"tableisfull"<<endl;	
+			return false;
+		}
+
+		int hash = (int)data;
+		//cout << hash << endl;
+		int start;
+		int step = hash %(tableSize-2)+1;
+		start = hash % tableSize;
+		int probe=start; //count double hashing insert location
+		int doubleH = start; //double hashing insert 
+		//check bucket is not full
+		int cost;
+		int cost2;
+		int locationNew;
+		int doubleCost=1;
+		while(full[doubleH])
+		{
+			if(bucket[doubleH]==data) //check data already in table
+				return false;
+
+			doubleCost++;
+			doubleH-=step;
+			if(doubleH < 0)
+				doubleH+=tableSize;
+		}
+
+		//cout<<"doublehashingcost=" <<doubleCost<<endl;
+		int lowestCost=0;
+		int lowestCostIndex=0;
+		int hash2,start2,step2;
+		int startbucket;
+		int probeFinal;
+		lowestCost = doubleCost;
+
+		for(int i =0;i<doubleCost-1;i++)
+		{	
+			probe=start;
+			//cout<<"i="<<i<<endl;
+			for(int j = 0; j<i ; j++){
+				//cout<<"move #"<<j;
+				probe-=step;
+				if(probe<0) probe+=tableSize;
+			}
+			probeFinal=probe;
+			//cout<<endl<<"at probe = "<<probe<<endl;
+			
+			int costToMove=1+i;
+			//find empty bucket for collision
+			hash2 =(int)bucket[probe];
+			step2 =	hash2 %(tableSize-2)+1;
+			while(full[probe]){
+				probe-=step2;
+				if(probe<0) probe+=tableSize;
+				costToMove++;
+			}
+			//cout<<"moved collision to: "<<probe<<endl;
+			//done finding cost
+			//cout<<"cost to move = "<<costToMove<<endl;
+			
+			if(costToMove<doubleCost)
+				if(costToMove<lowestCost)
+				{
+				
+				lowestCost = costToMove;
+				lowestCostIndex = probeFinal;
+				//cout<<"lowestCost:"<<lowestCost<<" and lowestCostIndex:"<<lowestCostIndex<<endl;
+				}
+			
+		}
+		//cout<<"lowestCost:"<<lowestCost<<" and lowestCostIndex:"<<lowestCostIndex<<endl;
+
+		//time to insert if brent cost is less that double cost
+		if(lowestCost<doubleCost)
+		{
+			doubleH=start;
+			//doublehash insert at location lowestCostindex
+			//set passbits for double hashing
+			while(doubleH!=lowestCostIndex)
+			{	if(!passbit[doubleH]){
+				passbit[doubleH]=true;
+				pbCount++;
+				}
+				doubleH-=step;
+				if(doubleH < 0)
+					doubleH+=tableSize;
+			}
+			//move the colliding item
+			hash2 =(int)bucket[lowestCostIndex];
+			step2 =	hash2 %(tableSize-2)+1;
+			probe=doubleH;//find out where to insert collision
+			while(full[probe])
+			{	if(!passbit[probe]){
+				passbit[probe]=true;
+				pbCount++;
+				}
+				probe-=step2;
+				if(probe<0)
+					probe+=tableSize;
+			}
+			//store collision insert at its next free probe
+			bucket[probe]=bucket[lowestCostIndex];
+			full[probe]=true;
+			//insert data into the lowestcostindex
+			bucket[lowestCostIndex]=data;
+			sProbes+=lowestCost;
+			currentSize++;
+			return true;
+		}
+
+
+
+		
+		else{
+			doubleH = start;
+			while(full[doubleH])
+			{
+				if(!passbit[doubleH]){
+				passbit[doubleH]=true;
+				pbCount++;
+				}
+				doubleH-=step;
+				if(doubleH < 0)
+					doubleH+=tableSize;
+			}
+		}
+		
+		bucket[doubleH]=data;
+		full[doubleH]=true;
+		currentSize++;
+		sProbes+=doubleCost;
+		//cout << "brent insert at " << start<<endl;*/
+		return true;
+		
+	}

@@ -1,0 +1,16 @@
+
+
+graphs:		graph_n_m
+			n # of objects 		0 .. (n-1)
+			m # of pairs
+			
+
+
+You can use topSort in your directory/folder on ieng6.ucsd.edu to create solutions to other topological sorting problems.
+
+
+You can generate new examples with Graphgen_HW1.py. (read the README file in Graph_Gen folder) You should test your program with multiple 
+large examples.  
+
+
+The file graph_100_500.bad1.s 

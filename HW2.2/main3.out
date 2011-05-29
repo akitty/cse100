@@ -1,0 +1,38 @@
+
+Double hashing:
+
+ 0: f  name: beth smith                 zip: 92014    | 5, 2, 12, 9, 6, 3, 0
+ 1: f  
+ 2: t  name: darrell cruz               zip: 23455    | 2
+ 3: t  name: patti bliss                zip: 16428    | 12, 3
+ 4: f  name: willie yuu                 zip: 12345    | 4
+ 5: t  name: diane lake                 zip: 16428    | 5
+ 6: t  name: jehan roma                 zip: 34567    | 5, 12, 6
+ 7: f  name: alan knox                  zip: 78901    | 2, 7
+ 8: f  
+ 9: t  name: alex kronkov               zip: 56789    | 9
+10: f  name: bev tuxin                  zip: 92014    | 10
+11: f  
+12: t  name: herb jones                 zip: 92093    | 12
+
+average ssl 2    expected ssl 1.90624
+average usl via passbits 1.82517    average usl calculated 1.85714    expected usl 1.75699
+
+Brent hashing:
+
+ 0: f  
+ 1: f  name: herb jones                 zip: 92093    | 12, 1
+ 2: t  name: darrell cruz               zip: 23455    | 2
+ 3: f  name: patti bliss                zip: 16428    | 12, 3
+ 4: f  name: willie yuu                 zip: 12345    | 4
+ 5: t  name: beth smith                 zip: 92014    | 5
+ 6: f  name: jehan roma                 zip: 34567    | 5, 12, 6
+ 7: t  name: diane lake                 zip: 16428    | 5, 10, 2, 7
+ 8: f  
+ 9: f  name: alex kronkov               zip: 56789    | 9
+10: t  name: bev tuxin                  zip: 92014    | 10
+11: f  
+12: t  name: alan knox                  zip: 78901    | 2, 7, 12
+
+average ssl 1.9
+average usl via passbits 1.62238    average usl calculated 1.625

@@ -1,0 +1,20 @@
+
+Double hashing:         notes page 40
+
+ 0: t  20    cow   | 0
+ 1: t  16    dog   | 1
+ 2: t  12    pig   | 2
+ 3: t  18    ape   | 3
+ 4: f  22    yak   | 2, 0, 3, 1, 4
+
+ssl 1.8     usl via passbits 5     usl calculated 3
+
+Brent hashing:
+
+ 0: t  20    cow   | 0
+ 1: t  16    dog   | 1
+ 2: t  22    yak   | 2
+ 3: f  18    ape   | 3
+ 4: f  12    pig   | 2, 1, 0, 4
+
+ssl 1.6     usl via passbits 2.5     usl calculated 1.93333

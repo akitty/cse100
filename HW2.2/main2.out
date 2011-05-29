@@ -1,0 +1,31 @@
+
+ 0: f  6781  | 5, 0
+ 1: f  
+ 2: t  1234  | 2
+ 3: t  234  | 3
+ 4: f  235  | 4
+ 5: t  9982  | 5
+ 6: f  3589  | 3, 6
+ 7: f  2345  | 2, 7
+ 8: f  
+ 9: f  
+10: f  2342  | 10
+
+record 6781 is present
+record 7766 is not present
+record 98 is not present
+duplicate record attempted: 6781
+ssl is 1.375    usl via passbits 1.375     usl calculated 1.32323
+
+ 0: f  
+ 1: f  
+ 2: f  
+ 3: f  
+ 4: f  
+ 5: f  
+ 6: f  
+ 7: f  
+ 8: f  
+ 9: f  
+10: f  
+
